@@ -4,13 +4,6 @@ set -e # fail fast
 
 BUILD_DIR=$1
 
-if [ -z "$WEBPACK_CACHE_PATH" ]
-then
-  env
-  echo "=====> Overwriting only-if-changed json files"
-  for f in ${WEBPACK_CACHE_PATH}/*.json; do sed -r 's|/tmp/build_[a-zA-Z0-9]+|'${BUILD_DIR}'|g' $f; done
-  echo " ✓"
-else
-  echo " ✗ - WEBPACK_CACHE_PATH environment variable not set"
-fi
-
+echo "=====> Overwriting only-if-changed json files"
+for f in tmp/cache/webpack/*.json; do sed -r 's|/tmp/build_[a-zA-Z0-9]+|'${BUILD_DIR}'|g' $f; done
+echo " ✓"
