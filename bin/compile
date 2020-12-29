@@ -5,5 +5,7 @@ set -e # fail fast
 BUILD_DIR=$1
 
 echo "=====> Overwriting only-if-changed json files"
+ls -la
+ls -la tmp
 for f in tmp/cache/webpack/*.json; do sed -r 's|/tmp/build_[a-zA-Z0-9]+|'${BUILD_DIR}'|g' $f; done
 echo " ✓"
